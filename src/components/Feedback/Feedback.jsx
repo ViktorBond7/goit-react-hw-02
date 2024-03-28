@@ -1,10 +1,13 @@
-const Feedback = ({ good, neutral, bad }) => {
+import css from "./Feedback.module.css";
+const Feedback = ({ feedback, positive }) => {
   return (
-    <>
-      <p>Good: {good}</p>
-      <p>Neutral: {neutral}</p>
-      <p>Bad: {bad}</p>
-    </>
+    <div>
+      <p className={css.title}>Good: {feedback.good}</p>
+      <p>Neutral: {feedback.neutral}</p>
+      <p>Bad: {feedback.bad}</p>
+      <p> positive: {positive}</p>
+    </div>
   );
 };
+
 export default Feedback;

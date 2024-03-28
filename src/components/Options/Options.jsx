@@ -1,11 +1,10 @@
-// import { render } from "react-dom";
-
-const Options = () => {
+const Options = ({ onLeaveFeedback, totalFeedback, handleReset }) => {
   return (
     <div>
-      <button>Good</button>
-      <button>Neutral</button>
-      <button>Bad</button>
+      <button onClick={() => onLeaveFeedback("good")}>Good</button>
+      <button onClick={() => onLeaveFeedback("neutral")}>Neutral</button>
+      <button onClick={() => onLeaveFeedback("bad")}>Bad</button>
+      {totalFeedback > 0 && <button onClick={handleReset}>Reset</button>}
     </div>
   );
 };
