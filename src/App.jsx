@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-
 import "./App.css";
 import Description from "./components/Description/Description";
 import Options from "./components/Options/Options";
@@ -21,14 +20,13 @@ const App = () => {
       [feedbackType]: prevFeedback[feedbackType] + 1,
     }));
   };
-  const sumFeedback =
+
+  const totalFeedback =
     feedbackTypes.good + feedbackTypes.neutral + feedbackTypes.bad;
 
   const positiveFeedback =
-    sumFeedback > 0
-      ? Math.round(
-          ((feedbackTypes.good + feedbackTypes.neutral) / sumFeedback) * 100
-        )
+    totalFeedback > 0
+      ? Math.round((feedbackTypes.good / totalFeedback) * 100)
       : 0;
 
   useEffect(() => {
@@ -37,7 +35,6 @@ const App = () => {
 
   const handleReset = () => {
     localStorage.removeItem("feedbackTypes");
-
     window.location.reload();
   };
 
@@ -50,10 +47,10 @@ const App = () => {
       />
       <Options
         onLeaveFeedback={updateFeedback}
-        totalFeedback={sumFeedback}
+        totalFeedback={totalFeedback}
         handleReset={handleReset}
       />
-      {sumFeedback > 0 ? (
+      {totalFeedback > 0 ? (
         <Feedback
           feedback={feedbackTypes}
           totalFeedback={positiveFeedback}
